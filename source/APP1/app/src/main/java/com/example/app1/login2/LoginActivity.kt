@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
                  if (task.isSuccessful) {
                      // Sign in success, update UI with the signed-in user's information
                      //Log.d(LoginActivity.TAG, "signInWithEmail:success")
-                     Log.d("ok","bienn**************")
+                     Log.d("ok","bienn ok**************")
                      this.nom.text="CONECTADO"
                      val user = mAuth!!.currentUser
                      flag=0
