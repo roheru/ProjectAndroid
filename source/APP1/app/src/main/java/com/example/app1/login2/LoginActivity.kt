@@ -42,8 +42,21 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
         botton_go_home.setOnClickListener {
             email= this.nameUser.text.toString()
             password=this.passUser.text.toString()
-            authentication()
-            startActivity(Intent(this,MainActivity::class.java))
+
+            if(email!=null && email.length>0){
+                if(password!=null && password.length>0){
+
+                    authentication()
+                    startActivity(Intent(this,MainActivity::class.java))
+                }else{
+                    this.msg.text="Por favor digite una contraseña"
+                }
+
+            }else{
+                this.msg.text="Por favor digite un Usuario"
+            }
+
+
         }
 
     }
