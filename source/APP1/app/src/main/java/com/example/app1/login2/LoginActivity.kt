@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
                 if(password!=null && password.length>0){
 
                     authentication()
-                    startActivity(Intent(this,MainActivity::class.java))
+
                 }else{
                     this.msg.text="Por favor digite una contraseña"
                 }
@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
                          // Sign in success, update UI with the signed-in user's information
                          Log.d("AUTHENTICATION", "signInWithEmail:success")
                          val user = mAuth!!.currentUser
-                         //updateUI(user)
+                         startActivity(Intent(this,MainActivity::class.java))
                      } else {
                          // If sign in fails, display a message to the user.
                          /*Log.w(
@@ -85,6 +85,7 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
                          //).show()
                          //updateUI(null)*/
                          Log.d("AUTHENTICATION", "signInWithEmail:error")
+                         this.msg.text="Usuario y/o contraseña no válido"
                      }
 
                      // ...
