@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         // Create a CellStyle with the font
 
         // Create a CellStyle with the font
-        val headerCellStyle = workbook.createCellStyle()
+        /*val headerCellStyle = workbook.createCellStyle()
         headerCellStyle.setFont(headerFont)
 
         // Create a Row
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         // Closing the workbook
 
         // Closing the workbook
-        workbook.close()
+        workbook.close()*/
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)

@@ -1,6 +1,5 @@
 package com.example.app1.login2
 
-import android.R.attr.password
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -40,8 +39,8 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
         spinner!!.setAdapter(aa)
 
         botton_go_home.setOnClickListener {
-            email= this.nameUser.text.toString()
-            password=this.passUser.text.toString()
+            this.email= this.nameUser.text.toString()
+            this.password=this.passUser.text.toString()
 
             if(email!=null && email.length>0){
                 if(password!=null && password.length>0){
@@ -62,34 +61,40 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
     }
 
      fun authentication(){
-         var flag=1;
-         mAuth!!.signInWithEmailAndPassword(email, password)
-             .addOnCompleteListener(
-                 this
-             ) { task ->
-                 if (task.isSuccessful) {
-                     // Sign in success, update UI with the signed-in user's information
-                     //Log.d(LoginActivity.TAG, "signInWithEmail:success")
-                     Log.d("ok","bienn ok**************")
-                     this.nom.text="CONECTADO"
-                     val user = mAuth!!.currentUser
-                     flag=0
-                     //updateUI(user)
-                 } else {
-                    Log.d("No ok", "bad++++++++++++++++++++++")
-                     // If sign in fails, display a message to the user.
-                    /* Log.w(FragmentActivity.TAG, "signInWithEmail:failure", task.exception)
-                     Toast.makeText(
-                         this@EmailPasswordActivity, "Authentication failed.",
-                         Toast.LENGTH_SHORT
-                     ).show()*/
-                     this.nom.text="NO CONECTADO"
-                     //updateUI(null)
-                 }
+         try {
+             Log.d("auth","Here")
+             mAuth!!.signInWithEmailAndPassword(this.email, this.password)
+                 .addOnCompleteListener(
+                     this
+                 ) { task ->
+                     if (task.isSuccessful) {
+                         // Sign in success, update UI with the signed-in user's information
+                         Log.d("AUTHENTICATION", "signInWithEmail:success")
+                         val user = mAuth!!.currentUser
+                         //updateUI(user)
+                     } else {
+                         // If sign in fails, display a message to the user.
+                         /*Log.w(
+                             FragmentActivity.TAG,
+                             "signInWithEmail:failure",
+                             task.exception
+                         )
+                         //Toast.makeText(
+                         //    this@EmailPasswordActivity, "Authentication failed.",
+                         //    Toast.LENGTH_SHORT
+                         //).show()
+                         //updateUI(null)*/
+                         Log.d("AUTHENTICATION", "signInWithEmail:error")
+                     }
 
-                 // ...
-             }
-         Log.d(flag.toString(),"resultado")
+                     // ...
+                 }
+         }catch (e:Exception){
+             Log.getStackTraceString(e)
+
+         }
+
+
      }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
