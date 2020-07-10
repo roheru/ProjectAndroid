@@ -9,12 +9,30 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/activities_execute"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:title="@string/activities_execute" />
+
+        <item
+            android:id="@+id/work_plans"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/work_plans" />
+
+        <item
+            android:id="@+id/docs_and_planes"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/docs_and_planes" />
+
+        <item
+            android:id="@+id/materials"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/materials" />
+
+<!--
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+            -->
     </group>
 </menu>
