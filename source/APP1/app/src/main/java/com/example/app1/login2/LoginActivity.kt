@@ -13,12 +13,15 @@ import androidx.fragment.app.FragmentActivity
 import com.example.app1.MainActivity
 import com.example.app1.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login2.*
 
 
 class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
     var languages = arrayOf("-Seleccione una opción-", "Director", "Residente", "Dibujante","SISO","Almacenista" )
     private var mAuth: FirebaseAuth? = null
+    private lateinit var auth: FirebaseAuth
     private var email = ""
     private var password = ""
     var spinner:Spinner? = null
@@ -26,11 +29,7 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         this.mAuth = FirebaseAuth.getInstance()
         setContentView(R.layout.activity_login2)
-        //val languages = resources.getStringArray(R.arra)
-        //val spinner = findViewById<View>(R.id.spinner) as Spinner
         spinner = this.spinner_s
-        //spinner!!.setOnItemSelectedListener(this)
-
         // Create an ArrayAdapter using a simple spinner layout and languages array
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
         // Set layout to use when the list of choices appear
@@ -41,7 +40,6 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
         botton_go_home.setOnClickListener {
             this.email= this.nameUser.text.toString()
             this.password=this.passUser.text.toString()
-
             if(email!=null && email.length>0){
                 if(password!=null && password.length>0){
 
@@ -63,6 +61,7 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
      fun authentication(){
          try {
              Log.d("auth","Here")
+
              mAuth!!.signInWithEmailAndPassword(this.email, this.password)
                  .addOnCompleteListener(
                      this
@@ -71,19 +70,10 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
                          // Sign in success, update UI with the signed-in user's information
                          Log.d("AUTHENTICATION", "signInWithEmail:success")
                          val user = mAuth!!.currentUser
+
                          startActivity(Intent(this,MainActivity::class.java))
                      } else {
-                         // If sign in fails, display a message to the user.
-                         /*Log.w(
-                             FragmentActivity.TAG,
-                             "signInWithEmail:failure",
-                             task.exception
-                         )
-                         //Toast.makeText(
-                         //    this@EmailPasswordActivity, "Authentication failed.",
-                         //    Toast.LENGTH_SHORT
-                         //).show()
-                         //updateUI(null)*/
+
                          Log.d("AUTHENTICATION", "signInWithEmail:error")
                          this.msg.text="Usuario y/o contraseña no válido"
                      }

@@ -1,7 +1,7 @@
 package com.example.app1
 
-import android.icu.util.Calendar
 import android.os.Bundle
+import android.os.Environment
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -11,17 +11,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.app1.models.User
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import org.apache.poi.ss.usermodel.Cell
-import org.apache.poi.ss.usermodel.IndexedColors
-import org.apache.poi.ss.usermodel.Workbook
+import org.apache.poi.hssf.usermodel.HSSFRichTextString
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import java.io.File
 import java.io.FileOutputStream
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,80 +30,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        createFileExcel()
 
-        val columns = arrayOf("Name", "Email", "Date Of Birth", "Salary")
-        val employees: List<User> = ArrayList()
 
-        val workbook = HSSFWorkbook()
-        val createHelper = workbook.creationHelper
-
-        // Create a Sheet
-
-        // Create a Sheet
-        val sheet = workbook.createSheet("Employee")
-
-        // Create a Font for styling header cells
-
-        // Create a Font for styling header cells
-        val headerFont = workbook.createFont()
-        headerFont.setBold(true)
-        headerFont.setFontHeightInPoints(14.toShort())
-        headerFont.setColor(IndexedColors.RED.getIndex())
-
-        // Create a CellStyle with the font
-
-        // Create a CellStyle with the font
-        /*val headerCellStyle = workbook.createCellStyle()
-        headerCellStyle.setFont(headerFont)
-
-        // Create a Row
-
-        // Create a Row
-        val headerRow = sheet.createRow(0)
-
-        // Create cells
-
-        // Create cells
-        for (i in 0 until columns.size) {
-            val cell: Cell = headerRow.createCell(i)
-            cell.setCellValue(columns[i])
-            cell.cellStyle = headerCellStyle
-        }
-        val dateCellStyle = workbook.createCellStyle()
-        dateCellStyle.dataFormat = createHelper.createDataFormat().getFormat("dd-MM-yyyy")
-
-        // Create Other rows and cells with employees data
-
-        // Create Other rows and cells with employees data
-        var rowNum = 1
-        for (employee in employees) {
-            val row = sheet.createRow(rowNum++)
-            row.createCell(0)
-                .setCellValue("Roger")
-            row.createCell(1)
-                .setCellValue("roheru87@gmail.com")
-            val dateOfBirthCell: Cell = row.createCell(2)
-            dateOfBirthCell.setCellValue("2020-10-01")
-            dateOfBirthCell.cellStyle = dateCellStyle
-            row.createCell(3)
-                .setCellValue("1200222")
-        }
-
-        // Resize all columns to fit the content size
-
-        // Resize all columns to fit the content size
-        for (i in 0 until columns.size) {
-            sheet.autoSizeColumn(i)
-        }
-
-        val fileOut = FileOutputStream("poi-generated-file.xls")
-        workbook.write(fileOut)
-        fileOut.close()
-
-        // Closing the workbook
-
-        // Closing the workbook
-        workbook.close()*/
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -138,5 +63,34 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun createExcel(){
+
+
+    }
+
+    fun createFileExcel(){
+        val workbook = HSSFWorkbook()
+        val firstSheet = workbook.createSheet("Hoja 1")
+        val secondSheet = workbook.createSheet("Hoja 2")
+        val rowA = firstSheet.createRow(0)
+        val cellA = rowA.createCell(0)
+        cellA.setCellValue(HSSFRichTextString("Hola prueba hoja uno"))
+        val rowB = secondSheet.createRow(0)
+        val cellB = rowB.createCell(0)
+        cellB.setCellValue(HSSFRichTextString("Hola prueba hoja dos"))
+
+        var fos: FileOutputStream? = null
+        try {
+            val str_path: String = Environment.getExternalStorageDirectory().toString()
+            val file: File
+            file = File(str_path, "TEST.xls")
+            fos = FileOutputStream(file)
+            workbook.write(fos)
+            fos.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
