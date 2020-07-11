@@ -142,7 +142,6 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
                                 this.na?.text=Editable.Factory.getInstance().newEditable("")
                                 this.rt?.text=Editable.Factory.getInstance().newEditable("")
                                 this.da?.text=Editable.Factory.getInstance().newEditable("")
-                                //this.spinnerp.setSelection(0)
                                 this.spinnerp?.setSelection(0)
                                 this.spinners?.setSelection(0)
                                 this.viz?.isEnabled=false
