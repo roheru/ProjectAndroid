@@ -49,6 +49,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
         return viewv
     }
     fun initializeComponents(v:View){
+
         val projects: ArrayList<Project> =getProjects()
         var  db= FirebaseAuth.getInstance()
         v?.welcome?.text="Buen Día "+db.currentUser?.email.toString()
@@ -69,7 +70,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
 
     fun getProjects():ArrayList<Project>{
         val projects: ArrayList<Project> = ArrayList()
-        projects.add( Project("-Seleccione un proyecto","",0))
+        projects.add( Project("-Seleccione un proyecto","",""))
         //projects.add()
         try {
 
@@ -87,7 +88,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
                         for (document in task.result!!) {
                             Log.d("DataValueID", document.id + " => " + document.data.get("name"))
                             //this.projects.set(this.projects.size,)
-                            projects.add( Project(document.data.get("name").toString(),document.data.get("description").toString(),document.id as Int))
+                            projects.add( Project(document.data.get("name").toString(),document.data.get("description").toString(),document.id))
                         }
                     } else {
                         Log.d("DataValueError", "Error getting documents: ", task.exception)

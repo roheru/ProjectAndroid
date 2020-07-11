@@ -7,19 +7,19 @@ class Project {
 
     private var name: String? = null
     private var description: String? = null
-    private var id:Int?=null
+    private var id:String?=null
 
-    constructor(name:String,description:String,id:Int){
+    constructor(name:String,description:String,id:String){
         this.name=name
         this.description=description
         this.id=id
     }
 
-    fun setId(id: Int) {
+    fun setId(id: String) {
         this.id = id
     }
 
-    fun getId(): Int? {
+    fun getId(): String? {
         return this.id
     }
 
