@@ -32,8 +32,15 @@
         />
 
 
-
-
+    <TextView
+        android:id="@+id/msg_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#E40B0B"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="" />
 
     <Spinner
         android:id="@+id/projects_works"
@@ -63,12 +70,11 @@
         android:layout_margin="2dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:inputType="textMultiLine"
         android:text="Nombre de la Actividad"
         android:textColor="#0E0C12"/>
 
     <EditText
-        android:id="@+id/nameActivity"
+        android:id="@+id/nameActivityText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -85,11 +91,11 @@
         android:layout_margin="5dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="Responsable"
+        android:text="Responsable Actividad"
         android:textColor="#07050B"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/responsableText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -105,11 +111,11 @@
         android:layout_margin="5dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="Actividad"
+        android:text="Descripción Actividad"
         android:textColor="#0F0A15"/>
 
     <EditText
-        android:id="@+id/editTextTextMultiLine2"
+        android:id="@+id/descriptionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -125,7 +131,7 @@
         android:layout_margin="5dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="Estado"
+        android:text="Estado de la Actvidad"
         android:textColor="#0A080C"/>
 
 
@@ -138,15 +144,14 @@
         android:layout_gravity="center" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_margin="2dp"
-        android:text="Guardar Actividad"
-
-        />
+        android:enabled="false"
+        android:text="Guardar Actividad"/>
 
     <Button
         android:id="@+id/visualize"
