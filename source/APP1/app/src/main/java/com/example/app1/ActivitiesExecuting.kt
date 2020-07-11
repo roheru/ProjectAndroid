@@ -70,7 +70,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
 
     fun getProjects():ArrayList<Project>{
         val projects: ArrayList<Project> = ArrayList()
-        projects.add( Project("-Seleccione un proyecto","",""))
+        projects.add( Project("-Seleccione un proyecto",""," "))
         //projects.add()
         try {
 
@@ -88,7 +88,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
                         for (document in task.result!!) {
                             Log.d("DataValueID", document.id + " => " + document.data.get("name"))
                             //this.projects.set(this.projects.size,)
-                            projects.add( Project(document.data.get("name").toString(),document.data.get("description").toString(),document.id))
+                            projects.add( Project(document.data.get("name").toString(),document.data.get("description").toString()," "))
                         }
                     } else {
                         Log.d("DataValueError", "Error getting documents: ", task.exception)
@@ -113,10 +113,17 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
                 id: Long
             ) {
                 try {
-                    val s=parentView?.getItemAtPosition(position) as Project
-                    Log.i("descriptionProj",s.toString())
-                    viz?.isEnabled=true
-                    tv?.text=s.getId().toString()+"-"+s.getDescription()
+
+                    if(position>0){
+                        val s=parentView?.getItemAtPosition(position) as Project
+                        Log.i("descriptionProj",s.toString())
+                        viz?.isEnabled=true
+                        tv?.text=s.getId().toString()+"-"+s.getDescription()
+                    }else{
+                        viz?.isEnabled=false
+                        tv?.text=""
+                    }
+
                 }catch (e:Exception){
                     e.printStackTrace()
 
