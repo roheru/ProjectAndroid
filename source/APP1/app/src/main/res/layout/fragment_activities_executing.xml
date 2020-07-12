@@ -17,19 +17,11 @@
     <TextView
         android:id="@+id/welcome"
         android:layout_width="match_parent"
-        android:layout_height="79dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:gravity="center"
         android:text="" />
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:src="@drawable/plus"
-        android:gravity="center"
-        android:layout_gravity="center"
-        />
 
 
     <TextView
@@ -163,7 +155,14 @@
         android:text="Visualizar Actividades"
         android:enabled="false"/>
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="#EF0505"
+        app:srcCompat="@drawable/plus" />
 
 
 </LinearLayout>

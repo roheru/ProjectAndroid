@@ -13,6 +13,8 @@ import com.example.app1.entities.Activity
 import com.example.app1.entities.Project
 import com.example.app1.models.ModelActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -46,6 +48,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
     private var viz:Button?=null
     private var save:Button?=null
     private var idProject:String?=null
+    private var newProject:FloatingActionButton?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +67,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
         var  db= FirebaseAuth.getInstance()
 
         v?.welcome?.text="Buen Día "+db.currentUser?.email.toString()
+        this.newProject=v.fab
         this.tv=v.description
         this.na=v.nameActivityText
         this.rt=v.responsableText
@@ -151,8 +155,6 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
                             }else{
                                 this.msg?.text="La actividad no pudo ser creada"
                             }
-
-
                         }else{
                             this.msg?.text = "Por favor seleccione el estado de la actividad"
                         }
@@ -215,6 +217,10 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
             }
         })
 
+        this.newProject?.setOnClickListener { view ->
+            Snackbar.make(view, "Create New Project", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
 
     }
 
