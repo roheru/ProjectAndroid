@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/activitiesExecuting"
         android:name="com.example.app1.ActivitiesExecuting"
-        android:label="fragment_activities_executing"
+        android:label="Ejecución de Actividades"
         tools:layout="@layout/fragment_activities_executing" />
     <fragment
         android:id="@+id/workTask"
