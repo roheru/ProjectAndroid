@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:paddingBottom="16dp"
+    android:padding="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".FragmentProject">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:src="@drawable/logo" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Creación de Proyecto"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="2dp"/>
+
+    <EditText
+        android:id="@+id/nameProject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text=""
+        android:layout_margin="2dp"
+        android:hint="Digite el nombre del Proyecto"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Creación de Proyecto"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="2dp"/>
+
+    <EditText
+        android:id="@+id/descriptionProject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:inputType="textMultiLine"
+        android:text=""
+        android:layout_margin="2dp"
+        android:hint="Digite la descripción del Proyecto"
+        />
+
+    <Button
+        android:id="@+id/botonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="2dp"
+        android:text="Crear Proyecto" />
+
+    <Button
+        android:id="@+id/botonExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="2dp"
+        android:text="Salir" />
+
+</LinearLayout>

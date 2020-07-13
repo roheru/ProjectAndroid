@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.app1.entities.Activity
 import com.example.app1.entities.Project
 import com.example.app1.models.ModelActivity
@@ -18,7 +19,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import kotlinx.android.synthetic.main.activity_login2.view.*
 import kotlinx.android.synthetic.main.fragment_activities_executing.view.*
 
 
@@ -49,7 +49,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
     private var save:Button?=null
     private var idProject:String?=null
     private var newProject:FloatingActionButton?=null
-
+    private var fm:FragmentManager?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,7 +77,7 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
         this.msg=v.msg_user
         this.spinnerp =v.projects_works
         this.spinners=v.states_spinner
-
+        this.fm=getFragmentManager()
         val projectsList = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, projects)
         projectsList.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         this.spinnerp!!.adapter = projectsList
@@ -220,6 +220,21 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
         this.newProject?.setOnClickListener { view ->
             Snackbar.make(view, "Create New Project", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+
+                showDialog()
+
+
+
+
+
+        }
+
+    }
+    fun showDialog(){
+        val dialogFrag = FragmentProject()
+        if(this.fm!=null){
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
+            Log.i("Fragment Manager Open","Open")
         }
 
     }

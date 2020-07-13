@@ -11,6 +11,7 @@
     android:paddingTop="16dp"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:id="@+id/barraSuperior"
     tools:context=".ActivitiesExecuting">
     <ImageView
         android:id="@+id/imageView2"
@@ -18,7 +19,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:src="@drawable/logo" />W
+        android:src="@drawable/logo" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
