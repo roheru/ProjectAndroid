@@ -2,17 +2,21 @@ package com.example.app1
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
-import kotlinx.android.synthetic.main.activity_login2.*
+import androidx.fragment.app.Fragment
+import com.example.app1.entities.Project
+import com.example.app1.models.ModelProject
+import kotlinx.android.synthetic.main.fragment_project.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,9 +50,23 @@ class FragmentProject : DialogFragment() {
 
     fun accionar(){
         btnSalir?.setOnClickListener {
-               // dismiss()
+               dismiss()
         }
+        btnGuardar?.setOnClickListener {
+            Log.i("Create","Create Project")
+            var mp:ModelProject  = ModelProject()
+            var project:Project?= Project(this.nameProject.text.toString(),this.descriptionProject.text.toString(),"")
 
+            project?.let { it1 -> mp.insertProject(it1) }
+
+            val intent = Intent()
+            intent.putExtra("listdata", "Proyecto creado con exito!!")
+            targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
+
+            dismiss()
+           // val ftran: android.app.FragmentTransaction? = activity!!.fragmentManager?.beginTransaction()
+            //ftran?.detach(this.parentFragment!!)?.attach(this)?.commit()
+        }
     }
 
     override fun onCreateView(

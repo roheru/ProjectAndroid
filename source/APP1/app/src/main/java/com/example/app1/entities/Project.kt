@@ -42,4 +42,11 @@ class Project {
     override fun toString(): String {
         return this.name.toString()
     }
+
+    fun toMap():Map<String,Any>{
+        val result=HashMap<String,Any>()
+        result.put("name",this.name!!)
+        result.put("description",this.description!!)
+        return result
+    }
 }

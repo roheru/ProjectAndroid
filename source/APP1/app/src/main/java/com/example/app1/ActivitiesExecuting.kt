@@ -1,5 +1,7 @@
 package com.example.app1
 
+import android.R.attr
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.core.graphics.green
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.app1.entities.Activity
@@ -233,7 +236,9 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
     fun showDialog(){
         val dialogFrag = FragmentProject()
         if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
             fragmentManager?.let { dialogFrag.show(it,"Hola") }
+
             Log.i("Fragment Manager Open","Open")
         }
 
@@ -250,6 +255,17 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
          */
         // TODO: Rename and change types and number of parameters
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val myData: String = data?.getStringExtra("listdata") ?: ""
+        val projects: ArrayList<Project> =getProjects()
+        val projectsList = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, projects)
+        projectsList.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        this.spinnerp!!.adapter = projectsList
+        this.msg?.text=myData
+        Log.i("FeedbackResult","result")
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
