@@ -53,19 +53,36 @@ class FragmentProject : DialogFragment() {
                dismiss()
         }
         btnGuardar?.setOnClickListener {
-            Log.i("Create","Create Project")
-            var mp:ModelProject  = ModelProject()
-            var project:Project?= Project(this.nameProject.text.toString(),this.descriptionProject.text.toString(),"")
+            var nameTextS:String?=this.nameProject.text.toString()
+            var descriptionTextS:String?=this.descriptionProject.text.toString()
 
-            project?.let { it1 -> mp.insertProject(it1) }
+            if(nameTextS!=null && nameTextS.length>0){
 
-            val intent = Intent()
-            intent.putExtra("listdata", "Proyecto creado con exito!!")
-            targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
+                if(descriptionTextS!=null && descriptionTextS.length>0){
+                    var mp:ModelProject  = ModelProject()
+                    var project:Project?= Project(nameTextS,descriptionTextS,"")
+                    project?.let { it1 -> mp.insertProject(it1) }
+                    val intent = Intent()
+                    intent.putExtra("listdata", "Proyecto creado con exito!!")
+                    targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
 
-            dismiss()
-           // val ftran: android.app.FragmentTransaction? = activity!!.fragmentManager?.beginTransaction()
-            //ftran?.detach(this.parentFragment!!)?.attach(this)?.commit()
+                    dismiss()
+                    // val ftran: android.app.FragmentTransaction? = activity!!.fragmentManager?.beginTransaction()
+                    //ftran?.detach(this.parentFragment!!)?.attach(this)?.commit()
+                }else{
+                    this.msg.text="Por favor digite una descripción"
+
+                }
+            }else{
+                this.msg.text="Por favor digite un nombre de Proyecto"
+
+            }
+
+
+
+
+
+
         }
     }
 

@@ -12,7 +12,7 @@ class ModelProject {
 
     }
 
-    fun insertProject(project:Project):Boolean{
+    fun insertProject(project:Project){
 
         try {
             var db = FirebaseFirestore.getInstance()
