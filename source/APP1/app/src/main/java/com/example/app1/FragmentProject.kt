@@ -50,6 +50,9 @@ class FragmentProject : DialogFragment() {
 
     fun accionar(){
         btnSalir?.setOnClickListener {
+            val intent = Intent()
+            intent.putExtra("listdata", "")
+            targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
                dismiss()
         }
         btnGuardar?.setOnClickListener {
