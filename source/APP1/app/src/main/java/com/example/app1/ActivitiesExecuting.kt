@@ -225,11 +225,6 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
                 .setAction("Action", null).show()
 
                 showDialog()
-
-
-
-
-
         }
 
     }

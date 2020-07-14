@@ -2,6 +2,7 @@ package com.example.app1
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -47,14 +48,22 @@ class FragmentProject : DialogFragment() {
     }
 
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+
 
     fun accionar(){
+
         btnSalir?.setOnClickListener {
             val intent = Intent()
             intent.putExtra("listdata", "")
             targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
                dismiss()
         }
+
+
         btnGuardar?.setOnClickListener {
             var nameTextS:String?=this.nameProject.text.toString()
             var descriptionTextS:String?=this.descriptionProject.text.toString()
@@ -89,11 +98,7 @@ class FragmentProject : DialogFragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         var b: AlertDialog.Builder =AlertDialog.Builder(active)
         var v:View?=activity?.layoutInflater?.inflate(R.layout.fragment_project, null, false)
         b.setView(v)
@@ -104,7 +109,22 @@ class FragmentProject : DialogFragment() {
         btnGuardar=v?.findViewById(R.id.botonSave)
 
         accionar()
-        return v
+        return b.create()
+    }
+
+  /*  override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+
+    }*/
+    override fun onResume() {
+        super.onResume()
+        val params = dialog?.window!!.attributes
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        dialog?.window!!.attributes = params as android.view.WindowManager.LayoutParams
     }
 
     override fun onAttach(context: Context) {
