@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -37,7 +38,8 @@ class FragmentProject : DialogFragment() {
     var barraSuperior:LinearLayout?=null
     var btnSalir:Button?=null
     var btnGuardar:Button?=null
-
+    var nameProject:EditText?=null
+    var descriptionProject:EditText?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +67,8 @@ class FragmentProject : DialogFragment() {
 
 
         btnGuardar?.setOnClickListener {
-            var nameTextS:String?=this.nameProject.text.toString()
-            var descriptionTextS:String?=this.descriptionProject.text.toString()
+            var nameTextS:String?=nameProject?.text.toString()
+            var descriptionTextS:String?=descriptionProject?.text.toString()
 
             if(nameTextS!=null && nameTextS.length>0){
 
@@ -103,7 +105,8 @@ class FragmentProject : DialogFragment() {
         var v:View?=activity?.layoutInflater?.inflate(R.layout.fragment_project, null, false)
         b.setView(v)
 
-
+        nameProject=v?.findViewById(R.id.nameProject)
+        descriptionProject=v?.findViewById(R.id.descriptionProject)
         barraSuperior=v?.findViewById(R.id.barraSuperior)
         btnSalir=v?.findViewById(R.id.botonExit)
         btnGuardar=v?.findViewById(R.id.botonSave)
