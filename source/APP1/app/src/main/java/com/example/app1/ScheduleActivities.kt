@@ -1,10 +1,20 @@
 package com.example.app1
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
+import android.widget.CalendarView.OnDateChangeListener
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_schedule_activities.*
+
+import kotlinx.android.synthetic.main.fragment_schedule_activities.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +30,8 @@ class ScheduleActivities : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var calendarview:CalendarView?=null
+    private var labeDate:TextView?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +46,43 @@ class ScheduleActivities : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule_activities, container, false)
+        val viewv=inflater.inflate(R.layout.fragment_schedule_activities, container, false)
+        inicializar(viewv)
+        accionar(viewv)
+        return viewv
+    }
+
+
+    fun getCurrentDate():String{
+        var calendar:Calendar
+        var dateFormat:SimpleDateFormat=SimpleDateFormat("dd / MM / yyyy")
+        calendar= Calendar.getInstance()
+
+        var date:String=dateFormat.format(calendar.time)
+        return date
+
+    }
+
+    fun inicializar(view:View){
+        this.calendarview=view.calendarMeet
+        this.labeDate=view.labelDate
+        this.labeDate?.text=getCurrentDate()
+
+    }
+    fun accionar(view:View){
+        this.calendarview?.setOnDateChangeListener(OnDateChangeListener { calendarView, i, i1, i2 ->
+            var day:String=i2.toString()
+            var month:String=(i1+1).toString()
+            if(i2<10){
+                day="0"+i2.toString()
+            }
+            if((i1+1)<10){
+                month="0"+(i1+1).toString()
+            }
+            val msg = "$day / $month / $i"
+        this.labelDate.text=msg
+        })
+
     }
 
     companion object {

@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener {
 
                          startActivity(Intent(this,MainActivity::class.java))
                      } else {
-
+                         //startActivity(Intent(this,MainActivity::class.java))
                          Log.d("AUTHENTICATION", "signInWithEmail:error")
                          this.msg.text="Usuario y/o contraseña no válido"
                      }
