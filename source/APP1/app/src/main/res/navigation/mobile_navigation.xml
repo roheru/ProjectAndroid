@@ -39,4 +39,9 @@
         android:name="com.example.app1.Documents"
         android:label="fragment_documents"
         tools:layout="@layout/fragment_documents" />
+    <fragment
+        android:id="@+id/fragment_Calendar"
+        android:name="com.example.app1.fragment_Calendar"
+        android:label="Reuniones y Plan de Trabajo"
+        tools:layout="@layout/fragment__calendar" />
 </navigation>
