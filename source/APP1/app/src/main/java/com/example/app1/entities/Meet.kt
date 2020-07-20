@@ -2,7 +2,7 @@ package com.example.app1.entities
 
 import java.util.*
 
-class Meet(var title:String,var description:String)
+class Meet(var title:String,var description:String,var hourb:String,var houre:String)
 /*
  class Meet (var ){
     internal var title:String=""

@@ -83,9 +83,9 @@ class MeetingList : DialogFragment() {
 
 
         val data=ArrayList<Meet>()
-        data.add(Meet("Reunion 1:","Reunión sobre aplicación de perros"))
-        data.add(Meet("Reunion 2:","Reunión sobre aplicación de gatos"))
-        data.add(Meet("Reunion 3:","Reunión sobre aplicación de aves"))
+        data.add(Meet("Reunion 1:","Reunión sobre aplicación de perros","12","13"))
+        data.add(Meet("Reunion 2:","Reunión sobre aplicación de gatos","10","15"))
+        data.add(Meet("Reunion 3:","Reunión sobre aplicación de aves","1","13"))
 
 
         val adapterRecycle=MyItemRecyclerViewAdapter(data)
