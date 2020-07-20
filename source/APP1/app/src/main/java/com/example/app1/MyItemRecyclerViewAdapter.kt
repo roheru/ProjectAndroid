@@ -44,10 +44,14 @@ class MyItemRecyclerViewAdapter(
         fun bindItems(data:Meet){
             val title: TextView = itemView.findViewById(R.id.titleCard)
             val description: TextView = itemView.findViewById(R.id.descriptionCard)
-
+            val date:TextView= itemView.findViewById(R.id.dateCard)
+            val hourb:TextView= itemView.findViewById(R.id.hourbCard)
+            val houre:TextView= itemView.findViewById(R.id.houreCard)
             title.text=data.title
-            description.text=data.title
-
+            description.text=data.description
+            date.text=data.date
+            hourb.text=data.hourb
+            houre.text=data.houre
 
         }
 

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
+    android:id="@+id/fragment_list"
+    tools:context=".MeetingList"
+    android:layout_width="match_parent"
     android:orientation="vertical"
-    tools:context=".MeetingList">
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    >
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,41 +25,157 @@
         android:layout_gravity="center"
         android:gravity="center"
         >
+
         <TableRow
             android:layout_gravity="center"
-            android:gravity="center">
-            <Button
-                android:id="@+id/createM"
+            android:gravity="center"
+            >
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Crear Reunión" />
-
-            <Button
-                android:id="@+id/exitM"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="   Cancelar   " />
-
+                android:id="@+id/textVIew7"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Asunto Reunión"/>
         </TableRow>
         <TableRow
             android:layout_gravity="center"
-            android:gravity="center">
-            <EditText
-                android:id="@+id/hourb"
+            android:gravity="center"
+            >
+            <EditText android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/asuntoM"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:hint="Digite el asunto de la reunión"/>
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:id="@+id/textVIew8"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Descripción Reunión"/>
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+            <EditText android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/descriptionM"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:hint="Digite la descripción de la reunión"/>
+        </TableRow>
+        <TableRow
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textVIew9"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Horas de Reunión"/>
+        </TableRow>
 
-            <EditText
-                android:id="@+id/houre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/buttonhourb"
+                    android:background="@drawable/clock"/>
+                <EditText
+                    android:id="@+id/hourbM"
+                    android:layout_width="100dp"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:hint="Hora inicio"  />
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/buttonhoure"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/clock"/>
+                <EditText
+                    android:id="@+id/houreM"
+                    android:gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="Hora fin"
+                    />
+
+            </LinearLayout>
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+
 
         </TableRow>
 
 
     </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/saveM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="#0576EF"
+            app:srcCompat="@drawable/save" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/exitM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="#0576EF"
+            app:srcCompat="@drawable/exit" />
+
+    </LinearLayout>
+
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewList"
         android:layout_width="match_parent"
@@ -66,8 +188,4 @@
         android:layout_marginEnd="8dp" >
 
     </androidx.recyclerview.widget.RecyclerView>
-
-
-
-
 </LinearLayout>

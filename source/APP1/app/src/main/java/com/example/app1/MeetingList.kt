@@ -7,20 +7,28 @@ import android.app.Dialog
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app1.entities.Meet
+import com.example.app1.entities.User
+import com.example.app1.models.ModelMeeting
+import com.example.app1.models.ModelUser
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.android.synthetic.main.fragment_item_meet.view.*
 import kotlinx.android.synthetic.main.fragment_meeting_list.view.*
+import java.lang.Exception
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,13 +45,21 @@ class MeetingList : DialogFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    internal var exitM:Button?=null
-    internal var createM:Button?=null
-    private var dateMessage:String?=null
+    internal var exitM:FloatingActionButton?=null
+    internal var saveM:FloatingActionButton?=null
+
+
     private var textDate:TextView?=null
+
+    private var dateMessage:String?=null
     private var hourbtext:EditText?=null
     private var houretext:EditText?=null
+    private var subjectM:EditText?=null
+    private var descriptionM:EditText?=null
 
+    private var buttonhoure:ImageButton?=null
+    private var buttonhourb:ImageButton?=null
+    private var rvv:RecyclerView?=null
     var active:Activity?=null
 
     fun setDateMessage(datem:String){
@@ -62,7 +78,7 @@ class MeetingList : DialogFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        Log.i("prueba","entro")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -77,28 +93,75 @@ class MeetingList : DialogFragment() {
         accionar()
 
         b.setView(v)
-        val rv:RecyclerView?=v?.findViewById(R.id.recyclerViewList)
+        this.rvv=v?.findViewById(R.id.recyclerViewList)
 
-        rv?.layoutManager=LinearLayoutManager(active, LinearLayout.VERTICAL.toInt(),false)
-
-
-        val data=ArrayList<Meet>()
-        data.add(Meet("Reunion 1:","Reunión sobre aplicación de perros","12","13"))
-        data.add(Meet("Reunion 2:","Reunión sobre aplicación de gatos","10","15"))
-        data.add(Meet("Reunion 3:","Reunión sobre aplicación de aves","1","13"))
+        rvv?.layoutManager=LinearLayoutManager(active, LinearLayout.VERTICAL.toInt(),false)
 
 
-        val adapterRecycle=MyItemRecyclerViewAdapter(data)
-        rv?.adapter=adapterRecycle
+        var data:ArrayList<Meet>?=ArrayList<Meet>()
+
+        var mm:ModelMeeting= ModelMeeting()
+
+        //data=mm.listMeetings()
+
+        val meets: ArrayList<Meet> = ArrayList()
+        try {
+
+            /*var db = FirebaseFirestore.getInstance()
+            val meetingsCollection = db.collection("meetings")
+            meetingsCollection.get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    if (task.isSuccessful) {
+                        for (document in task.result!!) {
+                            Log.d("DataValueID", document.id + " => " + document.data.get("name"))
+                            //this.projects.set(this.projects.size,)
+                            meets.add(
+                                Meet(
+                                    document.data["title"].toString(),
+                                    document.data["description"].toString(),
+                                    document.data["date"].toString(),
+                                    document.data["hourb"].toString(),
+                                    document.data["houre"].toString(),
+                                    document.data["user"].toString()
+
+                                )
+                            )
+                        }
+
+                    } else {
+                        Log.d("DataValueError", "Error getting documents: ", task.exception)
+                        task.exception?.printStackTrace()
+                    }
+                })*/
+
+            meets.add(Meet("","","","","",""))
+            meets.add(Meet("","","","","",""))
+            meets.add(Meet("","","","","",""))
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+        }
+
+        val adapterRecycle=MyItemRecyclerViewAdapter(meets)
+
+        //val adapterRecycle=MyItemRecyclerViewAdapter(data)
+        rvv?.adapter=adapterRecycle
         return b.create()
     }
 
+
+
     fun inicializar(view:View?){
         this.exitM=view?.exitM
-        this.createM=view?.createM
+        this.saveM=view?.saveM
         this.textDate=view?.titleDay
-        this.hourbtext=view?.hourb
-        this.houretext=view?.houre
+        this.hourbtext=view?.hourbM
+        this.houretext=view?.houreM
+        this.buttonhourb=view?.buttonhourb
+        this.buttonhoure=view?.buttonhoure
+        this.subjectM=view?.asuntoM
+        this.descriptionM=view?.descriptionM
         this.textDate?.text="Reunión del día "+this.dateMessage.toString()
     }
 
@@ -107,11 +170,52 @@ class MeetingList : DialogFragment() {
             dismiss()
         }
 
-        this.hourbtext?.setOnClickListener{view->
+        this.buttonhourb?.setOnClickListener { view->
             val mTimePicker: TimePickerDialog
 
             mTimePicker = TimePickerDialog(this?.context,
-                OnTimeSetListener { timePicker, selectedHour, selectedMinute -> this.hourbtext?.setText("$selectedHour:$selectedMinute") },
+                OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+                    var sm:String=selectedMinute.toString()
+                    var sh:String=selectedHour.toString()
+
+                    if(selectedHour<10){
+                        sh="0"+sh
+                    }
+
+                    if(selectedMinute<10){
+                        sm="0"+sm
+                    }
+
+                    this.hourbtext?.setText(sh+":"+sm)
+                    },
+                12,
+                12,
+                true
+            )
+            mTimePicker.setTitle("Hola")
+            mTimePicker.show()
+
+        }
+
+        this.buttonhoure?.setOnClickListener{view->
+            val mTimePicker: TimePickerDialog
+
+            mTimePicker = TimePickerDialog(this?.context,
+                OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+
+                    var sm:String=selectedMinute.toString()
+                    var sh:String=selectedHour.toString()
+
+                    if(selectedHour<10){
+                        sh="0"+sh
+                    }
+
+                    if(selectedMinute<10){
+                        sm="0"+sm
+                    }
+
+                    this.houretext?.setText(sh+":"+sm)
+                },
                 12,
                 12,
                 true
@@ -120,22 +224,45 @@ class MeetingList : DialogFragment() {
             mTimePicker.setTitle("Hola")
             mTimePicker.show()
         }
+        this.saveM?.setOnClickListener{view ->
+            if(insertMeet()){
+                dismiss()
+            }else{
 
-        this.houretext?.setOnClickListener{view->
-            val mTimePicker: TimePickerDialog
+            }
 
-            mTimePicker = TimePickerDialog(this?.context,
-                OnTimeSetListener { timePicker, selectedHour, selectedMinute -> this.houretext?.setText("$selectedHour:$selectedMinute") },
-                12,
-                12,
-                true
-            ) //Yes 24 hour time
-
-            mTimePicker.setTitle("Hola")
-            mTimePicker.show()
         }
 
+    }
 
+    fun insertMeet():Boolean{
+        try {
+            var mu:ModelUser= ModelUser()
+            var mm:ModelMeeting= ModelMeeting()
+
+            var u:User=mu.getUser()
+
+            var meet:Meet= Meet()
+            meet.title=this.subjectM?.text.toString()
+            meet.description=this.descriptionM?.text.toString()
+            meet.date=this.dateMessage.toString()
+            meet.hourb=this.hourbtext?.text.toString()
+            meet.houre=this.houretext?.text.toString()
+            meet.user=u.uid
+
+            meet?.let { it1 -> mm.insertMeeting(it1) }
+            val intent = Intent()
+            intent.putExtra("listdata", "Reunión creada con exito!!")
+            targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
+
+
+
+
+            return true
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+        return false
     }
 
     override fun onAttach(context: Context) {

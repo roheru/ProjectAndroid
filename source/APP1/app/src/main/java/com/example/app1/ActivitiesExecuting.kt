@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.app1.entities.Activity
 import com.example.app1.entities.Project
 import com.example.app1.models.ModelActivity
+import com.example.app1.models.ModelProject
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -93,32 +94,13 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
 
 
     fun getProjects():ArrayList<Project>{
-        val projects: ArrayList<Project> = ArrayList()
+        var projects: ArrayList<Project> = ArrayList()
         projects.add( Project(" - Seleccione un proyecto - ",""," "))
         //projects.add()
         try {
+            var mp:ModelProject=ModelProject()
+            projects=mp.listProjects()
 
-            //example()
-            var db = FirebaseFirestore.getInstance()
-            //
-
-            val workPlansProject = db.collection("workPlansProject")
-
-            //val user=db.firestoreSettings.
-
-            workPlansProject.get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result!!) {
-                            Log.d("DataValueID", document.id + " => " + document.data.get("name"))
-                            //this.projects.set(this.projects.size,)
-                            projects.add( Project(document.data.get("name").toString(),document.data.get("description").toString(),document.id))
-                        }
-                    } else {
-                        Log.d("DataValueError", "Error getting documents: ", task.exception)
-                        task.exception?.printStackTrace()
-                    }
-                })
         }catch (e: Exception){
                 e.printStackTrace()
 
