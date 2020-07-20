@@ -56,7 +56,7 @@
                 android:text="DD / MM / YYYY" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/createMeeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CREAR REUNION" />
@@ -87,7 +87,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:backgroundTint="#0576EF"
-            app:srcCompat="@drawable/gantt" />
+            app:srcCompat="@drawable/calendar" />
     </LinearLayout>
 
 

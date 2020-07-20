@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/scheduleActivities"
         android:name="com.example.app1.ScheduleActivities"
-        android:label="fragment_schedule_activities"
+        android:label="Reuniones y Cronograma"
         tools:layout="@layout/fragment_schedule_activities" />
     <fragment
         android:id="@+id/activitiesExecuting"

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MeetingList">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleDay"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="dd/MM"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <TableRow
+            android:layout_gravity="center"
+            android:gravity="center">
+            <Button
+                android:id="@+id/createM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crear Reunión" />
+
+            <Button
+                android:id="@+id/exitM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancelar" />
+
+        </TableRow>
+
+
+    </TableLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+</LinearLayout>

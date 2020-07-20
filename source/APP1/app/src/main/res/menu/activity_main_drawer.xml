@@ -10,8 +10,8 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/scheduleActivities"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Cronograma de Actividades" />
+            android:icon    ="@drawable/ic_menu_camera"
+            android:title="Reuniones y Cronograma" />
 
         <item
             android:id="@+id/activitiesExecuting"

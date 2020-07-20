@@ -1,14 +1,18 @@
 package com.example.app1
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CalendarView
 import android.widget.CalendarView.OnDateChangeListener
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_schedule_activities.*
 
 import kotlinx.android.synthetic.main.fragment_schedule_activities.view.*
@@ -32,7 +36,8 @@ class ScheduleActivities : Fragment() {
     private var param2: String? = null
     private var calendarview:CalendarView?=null
     private var labeDate:TextView?=null
-
+    private var fm: FragmentManager?=null
+    private var createMeeting:Button?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -67,6 +72,8 @@ class ScheduleActivities : Fragment() {
         this.calendarview=view.calendarMeet
         this.labeDate=view.labelDate
         this.labeDate?.text=getCurrentDate()
+        this.createMeeting=view.createMeeting
+        this.fm=getFragmentManager()
 
     }
     fun accionar(view:View){
@@ -82,6 +89,19 @@ class ScheduleActivities : Fragment() {
             val msg = "$day / $month / $i"
         this.labelDate.text=msg
         })
+        this.createMeeting?.setOnClickListener { view ->
+            showDialog()
+        }
+    }
+
+    fun showDialog(){
+        val dialogFrag = MeetingList()
+        if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
+
+            Log.i("Fragment Manager Open","Open")
+        }
 
     }
 
