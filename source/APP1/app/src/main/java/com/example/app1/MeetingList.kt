@@ -44,6 +44,7 @@ class MeetingList : DialogFragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
 
@@ -62,8 +63,9 @@ class MeetingList : DialogFragment() {
 
         inicializar(v)
         accionar()
-        Log.i("Print - Info1",param1)
-        Log.i("Print - Info2",param2)
+        Log.i("Print - Info1",param1.toString())
+        Log.i("Print - Info2",param2.toString())
+        Log.i("date",savedInstanceState?.getString("date").toString())
         b.setView(v)
         val rv:RecyclerView?=v?.findViewById(R.id.recyclerViewList)
 

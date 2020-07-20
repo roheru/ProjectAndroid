@@ -96,6 +96,9 @@ class ScheduleActivities : Fragment() {
 
     fun showDialog(){
         val dialogFrag = MeetingList()
+        var args:Bundle= Bundle()
+        args.putString("date","yyy//dasdasd")
+        dialogFrag.arguments=args
         if(this.fm!=null){
             dialogFrag.setTargetFragment(this,1)
             fragmentManager?.let { dialogFrag.show(it,"Hola") }
