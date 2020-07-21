@@ -50,6 +50,7 @@ class MeetingList : DialogFragment() {
 
 
     private var textDate:TextView?=null
+    private var message:TextView?=null
 
     private var dateMessage:String?=null
     private var hourbtext:EditText?=null
@@ -162,6 +163,7 @@ class MeetingList : DialogFragment() {
         this.buttonhoure=view?.buttonhoure
         this.subjectM=view?.asuntoM
         this.descriptionM=view?.descriptionM
+        this.message=view?.message
         this.textDate?.text="Reunión del día "+this.dateMessage.toString()
     }
 
@@ -238,31 +240,63 @@ class MeetingList : DialogFragment() {
     fun insertMeet():Boolean{
         try {
             var mu:ModelUser= ModelUser()
-            var mm:ModelMeeting= ModelMeeting()
-
             var u:User=mu.getUser()
 
-            var meet:Meet= Meet()
-            meet.title=this.subjectM?.text.toString()
-            meet.description=this.descriptionM?.text.toString()
-            meet.date=this.dateMessage.toString()
-            meet.hourb=this.hourbtext?.text.toString()
-            meet.houre=this.houretext?.text.toString()
-            meet.user=u.uid
 
-            meet?.let { it1 -> mm.insertMeeting(it1) }
-            val intent = Intent()
-            intent.putExtra("listdata", "Reunión creada con exito!!")
-            targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
+            if(this.subjectM!=null && this.subjectM?.text!=null && this.subjectM?.text.toString().length>0){
+                if(this.descriptionM!=null && this.descriptionM?.text!=null && this.descriptionM?.text.toString().length>0){
+                    if(this.hourbtext!=null && this.hourbtext?.text!=null && this.hourbtext?.text.toString().length>0){
+                        if(this.houretext!=null && this.houretext?.text!=null && this.houretext?.text.toString().length>0){
 
+                            val hourbegin=this.hourbtext?.text.toString().split(":").toTypedArray()
+                            val hourend=this.houretext?.text.toString().split(":").toTypedArray()
 
+                            var hb=hourbegin[0].toInt()
+                            var mb=hourbegin[1].toInt()
+                            var he=hourend[0].toInt()
+                            var me=hourend[1].toInt()
 
-
+                            if(he>hb){
+                                insertMeet(u)
+                            }else if(he==hb && mb>me){
+                                insertMeet(u)
+                            }else{
+                                this.message?.text="Rango de horas de no válido"
+                            }
+                        }else{
+                            this.message?.text="Por favor verifique la hora final de la reunión"
+                        }
+                    }else{
+                        this.message?.text="Por favor verifique la hora inicial de la reunión"
+                    }
+                }else{
+                    this.message?.text="Por favor verifique la descripción de la reunión"
+                }
+            }else{
+                this.message?.text="Por favor verifique el asunto de la reunión"
+            }
             return true
         }catch (e:Exception){
             e.printStackTrace()
+            this.message?.text="Error creación de reunión"
         }
         return false
+    }
+
+    fun insertMeet(u:User){
+        var meet:Meet= Meet()
+        var mm:ModelMeeting= ModelMeeting()
+        meet.title=this.subjectM?.text.toString()
+        meet.description=this.descriptionM?.text.toString()
+        meet.date=this.dateMessage.toString()
+        meet.hourb=this.hourbtext?.text.toString()
+        meet.houre=this.houretext?.text.toString()
+        meet.user=u.uid
+
+        meet?.let { it1 -> mm.insertMeeting(it1) }
+        val intent = Intent()
+        intent.putExtra("listdata", "Reunión creada con exito!!")
+        targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
     }
 
     override fun onAttach(context: Context) {
