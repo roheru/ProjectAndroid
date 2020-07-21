@@ -23,8 +23,11 @@ import com.example.app1.entities.User
 import com.example.app1.models.ModelMeeting
 import com.example.app1.models.ModelUser
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.fragment_item_meet.view.*
 import kotlinx.android.synthetic.main.fragment_meeting_list.view.*
@@ -61,6 +64,7 @@ class MeetingList : DialogFragment() {
     private var buttonhoure:ImageButton?=null
     private var buttonhourb:ImageButton?=null
     private var rvv:RecyclerView?=null
+    private var meets:ArrayList<Meet>?=null
     var active:Activity?=null
 
     fun setDateMessage(datem:String){
@@ -82,7 +86,6 @@ class MeetingList : DialogFragment() {
         Log.i("prueba","entro")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
-
 
 
     @SuppressLint("WrongConstant")
@@ -108,10 +111,9 @@ class MeetingList : DialogFragment() {
         val meets: ArrayList<Meet> = ArrayList()
         try {
 
-            /*var db = FirebaseFirestore.getInstance()
+            var db = FirebaseFirestore.getInstance()
             val meetingsCollection = db.collection("meetings")
-            meetingsCollection.get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+            meetingsCollection.get().addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     if (task.isSuccessful) {
                         for (document in task.result!!) {
                             Log.d("DataValueID", document.id + " => " + document.data.get("name"))
@@ -128,27 +130,29 @@ class MeetingList : DialogFragment() {
                                 )
                             )
                         }
+                        val adapterRecycle=MyItemRecyclerViewAdapter(meets)
+
+                        //val adapterRecycle=MyItemRecyclerViewAdapter(data)
+                        rvv?.adapter=adapterRecycle
 
                     } else {
                         Log.d("DataValueError", "Error getting documents: ", task.exception)
                         task.exception?.printStackTrace()
                     }
-                })*/
-
-            meets.add(Meet("","","","","",""))
-            meets.add(Meet("","","","","",""))
-            meets.add(Meet("","","","","",""))
-
+                })
         } catch (e: Exception) {
             e.printStackTrace()
 
         }
 
-        val adapterRecycle=MyItemRecyclerViewAdapter(meets)
 
-        //val adapterRecycle=MyItemRecyclerViewAdapter(data)
-        rvv?.adapter=adapterRecycle
         return b.create()
+    }
+
+
+
+    fun getMessagesFromDatabase(){
+
     }
 
 
@@ -258,11 +262,14 @@ class MeetingList : DialogFragment() {
 
                             if(he>hb){
                                 insertMeet(u)
+                                return true
                             }else if(he==hb && mb>me){
                                 insertMeet(u)
+                                return true
                             }else{
                                 this.message?.text="Rango de horas de no válido"
                             }
+
                         }else{
                             this.message?.text="Por favor verifique la hora final de la reunión"
                         }
@@ -275,7 +282,7 @@ class MeetingList : DialogFragment() {
             }else{
                 this.message?.text="Por favor verifique el asunto de la reunión"
             }
-            return true
+
         }catch (e:Exception){
             e.printStackTrace()
             this.message?.text="Error creación de reunión"

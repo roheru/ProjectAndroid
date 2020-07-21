@@ -14,10 +14,20 @@ import kotlinx.android.synthetic.main.fragment_item_meet.view.*
  * [RecyclerView.Adapter] that can display a [DummyItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyItemRecyclerViewAdapter(
-    //private val values: List<DummyItem>
-    private val listElements: ArrayList<Meet>
-) : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
+class MyItemRecyclerViewAdapter : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+
+    private var listElements: ArrayList<Meet>?=null
+    private var resource: Int?=null
+
+    constructor(){
+
+    }
+
+    constructor(listElements: ArrayList<Meet>){
+        this.listElements=listElements
+
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -28,12 +38,19 @@ class MyItemRecyclerViewAdapter(
         return vh
     }
 
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = listElements[position]
-        holder.bindItems(item)
+
+        this.listElements?.get(position)?.let { holder.bindItems(it) }
     }
 
-    override fun getItemCount(): Int = listElements.size
+
+
+    override fun getItemCount(): Int = this.listElements?.size!!
+
+
+
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //val idView: TextView = view.findViewById(R.id.item_number)
@@ -54,6 +71,8 @@ class MyItemRecyclerViewAdapter(
             houre.text=data.houre
 
         }
+
+
 
 
 
