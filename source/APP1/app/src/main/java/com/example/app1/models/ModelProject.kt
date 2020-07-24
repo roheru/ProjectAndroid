@@ -39,7 +39,7 @@ class ModelProject {
     fun listProjects():ArrayList<Project>{
         val projects: ArrayList<Project> = ArrayList()
         try {
-
+            projects.add( Project(" - Seleccione un proyecto - ",""," "))
             var db = FirebaseFirestore.getInstance()
             val workPlansProject = db.collection("workPlansProject")
             workPlansProject.get()

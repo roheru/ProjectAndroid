@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/workTask"
         android:name="com.example.app1.WorkTask"
-        android:label="fragment_work_task"
+        android:label="Frente de Trabajo"
         tools:layout="@layout/fragment_work_task" />
     <fragment
         android:id="@+id/materials2"
