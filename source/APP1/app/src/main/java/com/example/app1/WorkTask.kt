@@ -108,6 +108,7 @@ class WorkTask : Fragment() {
                                     this.task?.text.toString())
                                 var mt:ModelTask=ModelTask()
                                 mt.insertTask(q)
+                                this.msg?.text="Tarea guardada con éxito"
                             }else{
                                 this.msg?.text="Por favor digite la tarea asignada"
                             }

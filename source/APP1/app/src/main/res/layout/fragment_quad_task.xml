@@ -18,11 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="16sp"
             android:text="Cuadrilla"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/quadidCard"
+            android:textSize="16sp"
             android:focusable="false"
             android:gravity="center"
             />
@@ -31,9 +33,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="16sp"
             android:text="Área"/>
 
         <EditText
+            android:textSize="16sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/areaCard"
@@ -45,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="16sp"
             android:text="Personal"/>
 
         <EditText
@@ -58,11 +63,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="16sp"
             android:text="Tarea"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskCard"
+            android:textSize="16sp"
             android:focusable="false"
             android:gravity="center"
             />
