@@ -1,13 +1,11 @@
 package com.example.app1
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
-import com.example.app1.dummy.DummyContent.DummyItem
-import com.example.app1.entities.Meet
 import com.example.app1.entities.Quad
 
 
@@ -22,6 +20,13 @@ class MyTaskRecyclerViewAdapter: RecyclerView.Adapter<MyTaskRecyclerViewAdapter.
 
     }
 
+    fun setData(q:ArrayList<Quad>){
+        this.listElements?.clear()
+        this.listElements?.addAll(q)
+        notifyDataSetChanged()
+
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -31,6 +36,7 @@ class MyTaskRecyclerViewAdapter: RecyclerView.Adapter<MyTaskRecyclerViewAdapter.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         this.listElements?.get(position)?.let { holder.bindItems(it) }
+        //notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = listElements?.size!!
@@ -56,3 +62,5 @@ class MyTaskRecyclerViewAdapter: RecyclerView.Adapter<MyTaskRecyclerViewAdapter.
 
 
 }
+
+
