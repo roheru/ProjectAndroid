@@ -34,7 +34,7 @@ class Activity {
     }
 
     fun setName(name: String) {
-        this.name = id
+        this.name = name
     }
 
     fun getName(): String? {

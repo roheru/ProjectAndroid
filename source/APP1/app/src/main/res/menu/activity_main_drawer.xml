@@ -28,10 +28,12 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/docs_and_planes" />
 
+
         <item
             android:id="@+id/materials2"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/materials" />
+
 
 <!--
         <item

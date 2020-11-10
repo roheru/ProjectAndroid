@@ -1,14 +1,10 @@
 package com.example.app1
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.fragment.app.FragmentManager
-import kotlinx.android.synthetic.main.fragment_documents.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,15 +13,13 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Documents.newInstance] factory method to
+ * Use the [infObra.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Documents : Fragment() {
+class infObra : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var uploadFile:Button?=null
-    private var fm: FragmentManager?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,44 +34,7 @@ class Documents : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val viewv=inflater.inflate(R.layout.fragment_documents, container, false)
-        inicializar(viewv)
-        accionar(viewv)
-        return viewv
-    }
-
-    fun inicializar(view:View){
-        this.uploadFile=view.plainpdf
-        this.fm=getFragmentManager()
-    }
-    fun accionar(view:View){
-        this.uploadFile?.setOnClickListener { view ->
-            showDialog()
-        }
-    }
-
-    fun showDialog(){
-        val dialogFrag = UploadPlain()
-        Log.i("Fragment Manager Open","CLick upload pdf")
-        if(this.fm!=null){
-            dialogFrag.setTargetFragment(this,1)
-            fragmentManager?.let { dialogFrag.show(it,"Hola") }
-
-            Log.i("Fragment Manager Open","CLick upload pdf")
-        }
-        /*val dialogFrag = MeetingList()
-        dialogFrag.setDateMessage(this.labeDate?.text.toString())
-        dialogFrag
-        var args:Bundle= Bundle()
-        args.putString("date","yyyxxdasdasd")
-        dialogFrag.arguments=args
-        if(this.fm!=null){
-            dialogFrag.setTargetFragment(this,1)
-            fragmentManager?.let { dialogFrag.show(it,"Hola") }
-
-            Log.i("Fragment Manager Open","Open")
-        }*/
-
+        return inflater.inflate(R.layout.fragment_inf_obra, container, false)
     }
 
     companion object {
@@ -87,12 +44,12 @@ class Documents : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Documents.
+         * @return A new instance of fragment infObra.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Documents().apply {
+            infObra().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

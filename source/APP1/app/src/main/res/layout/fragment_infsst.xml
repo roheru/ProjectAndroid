@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:id="@+id/upload_inf_sst"
+    android:orientation="vertical"
+    tools:context=".infsst">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelFile"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#EE0024"
+        android:text="Nombre Documento"/>
+
+    <EditText
+        android:id="@+id/nameFileSST"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text=""
+        android:layout_margin="2dp"
+        android:hint="Digite el nombre del documento"
+        />
+
+
+
+    <Button
+        android:id="@+id/selectSST"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        android:text="Cargar informe SST"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/messagePathSST"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#EE0024"
+        android:text="No hay un archivo seleccionado"/>
+
+    <Button
+        android:id="@+id/exitSST"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        android:text="Salir"/>
+
+</LinearLayout>
