@@ -66,21 +66,22 @@ class MyItemRecyclerPlainViewAdapter: RecyclerView.Adapter<MyItemRecyclerPlainVi
             linkDoc.text=data.getURL()
             linkButton?.setOnClickListener { view ->
                 Log.i("Print Message",linkDoc.text.toString())
+                accionar(view,data.getURL().toString())
+
             }
             //accionar()
 
         }
-/*
-        fun accionar(){
-            val linkButton:Button= itemView.findViewById(R.id.buttonLinkDoc)
-            linkButton?.setOnClickListener { view ->
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
 
-                //ContextCompat.startActivity(browserIntent);
-            }
+fun accionar(view: View,link:String){
+            val linkButton:Button= itemView.findViewById(R.id.buttonLinkDoc)
+                var browserIntent:Intent?=null
+
+            browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                view.context.startActivity(browserIntent)
+
 
         }
-*/
 
 
 

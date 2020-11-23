@@ -1,5 +1,7 @@
 package com.example.app1
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -62,11 +64,22 @@ class MyItemRecyclerSSTViewAdapter: RecyclerView.Adapter<MyItemRecyclerSSTViewAd
             linkDoc.text=data.getURL()
             linkButton?.setOnClickListener { view ->
                 Log.i("Print Message",linkDoc.text.toString())
+                accionar(view,data.getURL().toString())
             }
 
 
         }
 
+
+        fun accionar(view: View,link:String){
+            val linkButton:Button= itemView.findViewById(R.id.buttonLinkDoc)
+            var browserIntent: Intent?=null
+
+            browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            view.context.startActivity(browserIntent)
+
+
+        }
 
 
 
