@@ -51,6 +51,10 @@ class MeetingList : DialogFragment() {
     internal var exitM:FloatingActionButton?=null
     internal var saveM:FloatingActionButton?=null
 
+    /*OPen browser link file Don't forget!!
+    * Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+startActivity(browserIntent);
+    * */
 
     private var textDate:TextView?=null
     private var message:TextView?=null

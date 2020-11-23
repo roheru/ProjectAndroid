@@ -129,7 +129,8 @@ class UploadPlain : DialogFragment() {
 
                 val imageName: String = UUID.randomUUID().toString()
                 var storeRef: StorageReference
-                storeRef=FirebaseStorage.getInstance().getReference("documentsUpload")
+
+                storeRef=FirebaseStorage.getInstance().getReference(this.nameFile?.text.toString()+".pdf")
                 storeRef.putFile(saveUri!!).addOnSuccessListener {
                     mDialog.dismiss()
                     //Toast.makeText(context, "Imagen subida!", Toast.LENGTH_SHORT).show()
@@ -138,7 +139,7 @@ class UploadPlain : DialogFragment() {
                         Log.i("path",uri.toString())
                         var db = FirebaseFirestore.getInstance()
                         val dbDocument = db.collection("plainPDFDocuments")
-                        var doc=Document(this.nameFile?.text.toString(),uri.toString(),"1","1")
+                        var doc=Document(this.nameFile?.text.toString()+".pdf",uri.toString(),"1","1")
                         var flag:Boolean=true
 
                         dbDocument.add(doc.toMap()).addOnSuccessListener { documentReference ->

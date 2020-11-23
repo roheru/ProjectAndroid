@@ -24,7 +24,12 @@ class Documents : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var uploadFile:Button?=null
+    private var uploadFilePlain:Button?=null
+    private var uploadFileSST:Button?=null
+    private var uploadFileObra:Button?=null
+    private var listFilePlain:Button?=null
+    private var listFileSST:Button?=null
+    private var listFileConstruction:Button?=null
     private var fm: FragmentManager?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,16 +52,40 @@ class Documents : Fragment() {
     }
 
     fun inicializar(view:View){
-        this.uploadFile=view.plainpdf
+        this.uploadFilePlain=view.plainpdf
+        this.uploadFileSST=view.infoSST
+        this.uploadFileObra=view.infoObra
+        this.listFilePlain=view.listplainpdf
+        this.listFileSST=view.listinfoSST
+        this.listFileConstruction=view.listinfoObra
         this.fm=getFragmentManager()
     }
     fun accionar(view:View){
-        this.uploadFile?.setOnClickListener { view ->
-            showDialog()
+        this.uploadFilePlain?.setOnClickListener { view ->
+            showDialogPlain()
+        }
+
+        this.uploadFileSST?.setOnClickListener { view ->
+            showDialogSST()
+        }
+
+        this.uploadFileObra?.setOnClickListener { view ->
+            showDialogObra()
+        }
+
+        this.listFilePlain?.setOnClickListener { view ->
+            showDialogListPlain()
+        }
+
+        this.listFileSST?.setOnClickListener { view ->
+            showDialogListSST()
+        }
+        this.listFileConstruction?.setOnClickListener { view ->
+            showDialogListConstruction()
         }
     }
 
-    fun showDialog(){
+    fun showDialogPlain(){
         val dialogFrag = UploadPlain()
         Log.i("Fragment Manager Open","CLick upload pdf")
         if(this.fm!=null){
@@ -65,18 +94,64 @@ class Documents : Fragment() {
 
             Log.i("Fragment Manager Open","CLick upload pdf")
         }
-        /*val dialogFrag = MeetingList()
-        dialogFrag.setDateMessage(this.labeDate?.text.toString())
-        dialogFrag
-        var args:Bundle= Bundle()
-        args.putString("date","yyyxxdasdasd")
-        dialogFrag.arguments=args
+    }
+
+
+    fun showDialogSST(){
+        val dialogFrag = infsst()
+        Log.i("Fragment Manager Open","CLick upload pdf")
         if(this.fm!=null){
             dialogFrag.setTargetFragment(this,1)
             fragmentManager?.let { dialogFrag.show(it,"Hola") }
 
-            Log.i("Fragment Manager Open","Open")
-        }*/
+            Log.i("Fragment Manager Open","CLick upload pdf")
+        }
+    }
+
+    fun showDialogObra(){
+        val dialogFrag = infObra()
+        Log.i("Fragment Manager Open","CLick upload pdf")
+        if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
+
+            Log.i("Fragment Manager Open","CLick upload pdf")
+        }
+    }
+
+    fun showDialogListPlain(){
+        val dialogFrag = listPlain()
+        Log.i("Fragment Manager Open","CLick upload pdf")
+        if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
+
+            Log.i("Fragment Manager Open","CLick upload pdf")
+        }
+
+    }
+
+    fun showDialogListSST(){
+        val dialogFrag = list_sst()
+        Log.i("Fragment Manager Open","CLick upload pdf")
+        if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
+
+            Log.i("Fragment Manager Open","CLick upload pdf")
+        }
+
+    }
+
+    fun showDialogListConstruction(){
+        val dialogFrag = list_construction()
+        Log.i("Fragment Manager Open","CLick upload pdf")
+        if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
+
+            Log.i("Fragment Manager Open","CLick upload pdf")
+        }
 
     }
 

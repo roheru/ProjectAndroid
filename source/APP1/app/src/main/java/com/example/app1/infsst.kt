@@ -62,7 +62,7 @@ class infsst : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         var b: AlertDialog.Builder = AlertDialog.Builder(active)
-        var v:View?=activity?.layoutInflater?.inflate(R.layout.fragment_upload_plain, null, false)
+        var v:View?=activity?.layoutInflater?.inflate(R.layout.fragment_infsst, null, false)
         Log.i("prueba","uno")
         inicializar(v)
         accionar()
@@ -97,15 +97,15 @@ class infsst : DialogFragment() {
 
     fun accionar(){
         try {
-            
+
             this.selectFile?.setOnClickListener{view ->
 
                 if(this.nameFile?.text.toString().trim().length>0){
                     val intent=Intent()
-                    intent.type="application/docx"
+                    intent.type="application/pdf"
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.action=Intent.ACTION_GET_CONTENT
-                    startActivityForResult(Intent.createChooser(intent,"Select"),1102)
+                    startActivityForResult(Intent.createChooser(intent,"Select"),1103)
                 }else{
                     this.notifyPath?.text="Por favor digite el nombre del informe SST"
                 }
@@ -121,7 +121,7 @@ class infsst : DialogFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==1100 && resultCode==Activity.RESULT_OK){
+        if(requestCode==1103 && resultCode==Activity.RESULT_OK){
             try {
                 val saveUri = data?.data
                 var mDialog = ProgressDialog(context)
@@ -130,7 +130,7 @@ class infsst : DialogFragment() {
 
                 val imageName: String = UUID.randomUUID().toString()
                 var storeRef: StorageReference
-                storeRef= FirebaseStorage.getInstance().getReference("documentsSSTUpload")
+                storeRef= FirebaseStorage.getInstance().getReference(this.nameFile?.text.toString()+".pdf")
                 storeRef.putFile(saveUri!!).addOnSuccessListener {
                     mDialog.dismiss()
                     //Toast.makeText(context, "Imagen subida!", Toast.LENGTH_SHORT).show()
@@ -139,7 +139,7 @@ class infsst : DialogFragment() {
                         Log.i("path",uri.toString())
                         var db = FirebaseFirestore.getInstance()
                         val dbDocument = db.collection("SSTDocuments")
-                        var doc= Document(this.nameFile?.text.toString(),uri.toString(),"1","1")
+                        var doc= Document(this.nameFile?.text.toString()+".pdf",uri.toString(),"1","1")
                         var flag:Boolean=true
 
                         dbDocument.add(doc.toMap()).addOnSuccessListener { documentReference ->

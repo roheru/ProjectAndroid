@@ -12,27 +12,27 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/labelFile"
+        android:id="@+id/labelFileObra"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#EE0024"
-        android:text="Nombre Documento"/>
+        android:text="Nombre Documento Obra"/>
 
     <EditText
-        android:id="@+id/nameFile"
+        android:id="@+id/nameFileObra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:text=""
         android:layout_margin="2dp"
-        android:hint="Digite el nombre del documento"
+        android:hint="Digite el nombre del documento de obra"
         />
 
 
 
     <Button
-        android:id="@+id/selectPlain"
+        android:id="@+id/selectInfObra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -43,14 +43,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/messagePath"
+        android:id="@+id/messagePathObra"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#EE0024"
-        android:text="No hay un archivo seleccionado"/>
+        android:text="No hay un archivo de Obra seleccionado"/>
 
     <Button
-        android:id="@+id/exit"
+        android:id="@+id/exitObra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

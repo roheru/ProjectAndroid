@@ -105,7 +105,7 @@ class ScheduleActivities : Fragment() {
     fun showDialog(){
         val dialogFrag = MeetingList()
         dialogFrag.setDateMessage(this.labeDate?.text.toString())
-        dialogFrag
+        
         var args:Bundle= Bundle()
         args.putString("date","yyyxxdasdasd")
         dialogFrag.arguments=args
