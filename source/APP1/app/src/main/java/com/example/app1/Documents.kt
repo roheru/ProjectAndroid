@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
+import kotlinx.android.synthetic.main.fragment_documents.*
 import kotlinx.android.synthetic.main.fragment_documents.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +32,12 @@ class Documents : Fragment() {
     private var listFilePlain:Button?=null
     private var listFileSST:Button?=null
     private var listFileConstruction:Button?=null
+    private var docPlaneImage:ImageView?=null
+    private var infoSSTImage:ImageView?=null
+    private var infoConstImage:ImageView?=null
+    private var listplanoImage:ImageView?=null
+    private var listsstImage:ImageView?=null
+    private var listobraImage:ImageView?=null
     private var fm: FragmentManager?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,37 +60,42 @@ class Documents : Fragment() {
     }
 
     fun inicializar(view:View){
-        this.uploadFilePlain=view.plainpdf
-        this.uploadFileSST=view.infoSST
-        this.uploadFileObra=view.infoObra
-        this.listFilePlain=view.listplainpdf
-        this.listFileSST=view.listinfoSST
-        this.listFileConstruction=view.listinfoObra
+        //this.uploadFileSST=view.infoSST
+
+        this.docPlaneImage=view.plainImage
+        this.infoSSTImage=view.infoSSTImage
+        this.infoConstImage=view.infoConsImage
+        this.listplanoImage=view.listplanoImage
+        this.listsstImage=view.listsstImage
+        this.listobraImage=view.listobraImage
         this.fm=getFragmentManager()
     }
     fun accionar(view:View){
-        this.uploadFilePlain?.setOnClickListener { view ->
-            showDialogPlain()
-        }
 
-        this.uploadFileSST?.setOnClickListener { view ->
-            showDialogSST()
-        }
 
-        this.uploadFileObra?.setOnClickListener { view ->
-            showDialogObra()
-        }
 
-        this.listFilePlain?.setOnClickListener { view ->
+
+        this.listplanoImage?.setOnClickListener { view ->
             showDialogListPlain()
         }
 
-        this.listFileSST?.setOnClickListener { view ->
+        this.listsstImage?.setOnClickListener { view ->
             showDialogListSST()
         }
-        this.listFileConstruction?.setOnClickListener { view ->
+        this.listobraImage?.setOnClickListener { view ->
             showDialogListConstruction()
         }
+        this.docPlaneImage?.setOnClickListener { view ->
+            showDialogPlain()
+        }
+
+        this.infoSSTImage?.setOnClickListener { view ->
+            showDialogSST()
+        }
+        this.infoConstImage?.setOnClickListener { view ->
+            showDialogObra()
+        }
+
     }
 
     fun showDialogPlain(){

@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import kotlinx.android.synthetic.main.fragment_materials.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +23,13 @@ class Materials : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var saveMaterial: Button?=null
+    private var nameMaterial:EditText?=null
+    private var refMaterial:EditText?=null
+    private var descMaterial:EditText?=null
+    private var qMaterial:EditText?=null
+    private var stateMaterial:EditText?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +46,26 @@ class Materials : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_materials, container, false)
     }
+    fun inicializar(view:View){
+        this.saveMaterial=view.saveMaterial
+        this.nameMaterial=view.nameMaterial
+        this.refMaterial=view.reference
+        this.descMaterial=view.descriptionm
+        this.qMaterial=view.quantity
+        this.stateMaterial=view.stateSol
 
+    }
+    fun accionar(view:View){
+
+        this.saveMaterial?.setOnClickListener { view ->
+
+        }
+    }
+
+    fun saveMaterial(){
+
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

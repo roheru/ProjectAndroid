@@ -59,14 +59,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="...." />
-        <TextView
-            android:id="@+id/Descarga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Enlace Descarga" />
+
         <TextView
             android:id="@+id/linkDoc"
             android:layout_width="match_parent"
@@ -76,6 +69,15 @@
             android:gravity="center"
             android:visibility="invisible"
             android:text="----/----" />
+        <TextView
+            android:id="@+id/Descarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Enlace Descarga" />
+
         <Button
             android:id="@+id/buttonLinkDoc"
             android:layout_width="match_parent"
