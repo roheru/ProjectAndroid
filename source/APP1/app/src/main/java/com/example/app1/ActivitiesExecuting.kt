@@ -180,6 +180,11 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
     }
 
     fun accionar(v:View){
+
+        this.viz?.setOnClickListener { view ->
+            showDialogViz()
+        }
+
         this.spinnerp?.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?,selectedItemView: View,position: Int,id: Long) {
                 try {
@@ -210,6 +215,18 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
         }
 
     }
+
+
+    fun showDialogViz(){
+        val dialogFrag = ListActivitiesExecute()
+        if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
+            Log.i("Fragment Manager Open","Open")
+        }
+
+    }
+
     fun showDialog(){
         val dialogFrag = FragmentProject()
         if(this.fm!=null){

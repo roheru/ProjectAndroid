@@ -10,24 +10,26 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app1.entities.Activity
 import com.example.app1.entities.Document
+import com.example.app1.entities.ScheduleActivity
 
-class MyItemRecyclerConstructionViewAdapter: RecyclerView.Adapter<MyItemRecyclerConstructionViewAdapter.ViewHolder> {
-    private var listElements: ArrayList<Document>?=null
+class MyItemRecyclerActExeAdapter: RecyclerView.Adapter<MyItemRecyclerActExeAdapter.ViewHolder> {
+    private var listElements: ArrayList<ScheduleActivity>?=null
     private var resource: Int?=null
 
 
-    constructor(listElements: ArrayList<Document>){
+    constructor(listElements: ArrayList<ScheduleActivity>){
         this.listElements=listElements
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MyItemRecyclerConstructionViewAdapter.ViewHolder {
+    ): MyItemRecyclerActExeAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_item_document, parent, false)
-        val vh: MyItemRecyclerConstructionViewAdapter.ViewHolder =ViewHolder(view)
+            .inflate(R.layout.fragment_item_list_act_ex, parent, false)
+        val vh: MyItemRecyclerActExeAdapter.ViewHolder =ViewHolder(view)
 
 
         return vh
@@ -36,7 +38,7 @@ class MyItemRecyclerConstructionViewAdapter: RecyclerView.Adapter<MyItemRecycler
     override fun getItemCount(): Int = this.listElements?.size!!
 
     override fun onBindViewHolder(
-        holder: MyItemRecyclerConstructionViewAdapter.ViewHolder,
+        holder: MyItemRecyclerActExeAdapter.ViewHolder,
         position: Int
     ) {
         this.listElements?.get(position)?.let { holder.bindItems(it) }
@@ -48,12 +50,19 @@ class MyItemRecyclerConstructionViewAdapter: RecyclerView.Adapter<MyItemRecycler
 
 
 
-        fun bindItems(data:Document){
-            val nameDocument: TextView = itemView.findViewById(R.id.nameDocument)
-            val idProj: TextView = itemView.findViewById(R.id.projectIdDoc)
-            val linkDoc: TextView = itemView.findViewById(R.id.linkDoc)
-            val linkButton: Button = itemView.findViewById(R.id.buttonLinkDoc)
-            nameDocument.text=data.getName()
+        fun bindItems(data:ScheduleActivity){
+            val nameRes: TextView=itemView.findViewById(R.id.nameResponsible)
+            val nameAct: TextView=itemView.findViewById(R.id.nameActivity)
+            val nameProj: TextView=itemView?.findViewById(R.id.nameProject)
+            val nameDesc: TextView=itemView?.findViewById(R.id.nameDescription)
+            val nameState: TextView=itemView?.findViewById(R.id.namestateActivity)
+            nameRes.text=data.getResponsable()
+            nameAct.text=data.getName()
+            nameProj.text=data.getIdProject()
+            nameDesc.text=data.getDescription()
+            nameState.text=data.getState().toString()
+
+        /*
             idProj.text=data.getidProject()
             linkDoc.text=data.getURL()
             linkButton?.setOnClickListener { view ->
@@ -61,7 +70,7 @@ class MyItemRecyclerConstructionViewAdapter: RecyclerView.Adapter<MyItemRecycler
 
                 accionar(view,data.getURL().toString())
             }
-
+*/
 
         }
 

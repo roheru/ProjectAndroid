@@ -32,12 +32,12 @@
     <fragment
         android:id="@+id/materials2"
         android:name="com.example.app1.Materials"
-        android:label="fragment_materials"
+        android:label="Materiales"
         tools:layout="@layout/fragment_materials" />
     <fragment
         android:id="@+id/documents"
         android:name="com.example.app1.Documents"
-        android:label="fragment_documents"
+        android:label="Carga de Documentos y Planos"
         tools:layout="@layout/fragment_documents" />
     <fragment
         android:id="@+id/fragment_Calendar"
