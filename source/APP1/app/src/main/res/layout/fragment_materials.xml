@@ -154,6 +154,15 @@
         android:layout_margin="2dp"
 
         android:text="Guardar Registro Material"/>
+            <Button
+                android:id="@+id/vizMaterial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+
+                android:text="Visualizar Registro de Materiales"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
