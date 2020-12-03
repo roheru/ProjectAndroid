@@ -19,7 +19,7 @@ import com.example.app1.models.ModelActivity
 import com.example.app1.models.ModelProject
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+//import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -208,9 +208,9 @@ class ActivitiesExecuting : Fragment(), AdapterView.OnItemSelectedListener  {
         })
 
         this.newProject?.setOnClickListener { view ->
-            Snackbar.make(view, "Create New Project", Snackbar.LENGTH_LONG)
+            /*Snackbar.make(view, "Create New Project", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-
+            */
                 showDialog()
         }
 
