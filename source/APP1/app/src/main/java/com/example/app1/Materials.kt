@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import com.example.app1.entities.Material
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_materials.*
 import kotlinx.android.synthetic.main.fragment_materials.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,6 +27,7 @@ class Materials : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var saveMaterial: Button?=null
+    private var vizMaterial: Button?=null
     private var nameMaterial:EditText?=null
     private var refMaterial:EditText?=null
     private var descMaterial:EditText?=null
@@ -44,25 +48,55 @@ class Materials : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        this.view?.let { inicializar(it) }
         return inflater.inflate(R.layout.fragment_materials, container, false)
     }
     fun inicializar(view:View){
         this.saveMaterial=view.saveMaterial
+        this.vizMaterial=view.vizMaterial
         this.nameMaterial=view.nameMaterial
         this.refMaterial=view.reference
         this.descMaterial=view.descriptionm
         this.qMaterial=view.quantity
         this.stateMaterial=view.stateSol
+        accionar(view)
 
     }
     fun accionar(view:View){
 
         this.saveMaterial?.setOnClickListener { view ->
-
+            saveMaterialAction()
         }
+
+
+
+        this.vizMaterial?.setOnClickListener { view ->
+            listMaterials()
+        }
+
     }
 
-    fun saveMaterial(){
+    fun saveMaterialAction(){
+        try {
+            var db = FirebaseFirestore.getInstance()
+            val dbMaterial = db.collection("materials")
+            val mat=Material(this.nameMaterial?.text.toString(),this.refMaterial?.text.toString(),this.descMaterial?.text.toString(),this.qMaterial?.text.toString().toInt(),this.stateMaterial?.text.toString().toBoolean())
+            var flag:Boolean=true
+            dbMaterial.add(mat.toMap()).addOnSuccessListener { documentReference ->
+                flag=true
+
+            }.addOnFailureListener { e ->
+                flag=false
+            }
+            if(flag){
+                this.message.text="El material ha sido guardado con éxito."
+            }
+        }catch(e:Exception){
+            e.printStackTrace()
+        }
+
+    }
+    fun listMaterials(){
 
 
     }
