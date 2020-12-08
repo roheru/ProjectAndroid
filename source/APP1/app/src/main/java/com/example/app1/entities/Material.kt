@@ -64,7 +64,7 @@ class Material {
         result.put("name",this.name!!)
         result.put("referencia",this.reference!!)
 
-        result.put("descripcion",this.description!!)
+        result.put("description",this.description!!)
         result.put("cantidad",this.cantidad!!)
         result.put("estado",this.estado!!)
         return result

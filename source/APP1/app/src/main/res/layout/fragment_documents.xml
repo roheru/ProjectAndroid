@@ -23,65 +23,65 @@
 
     <ImageView
         android:id="@+id/plainImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="left|top"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/doc_plan"
+        android:src="@drawable/logo1"
         />
 
 
 
     <ImageView
         android:id="@+id/infoSSTImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="left|top"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/infosavesst"
+        android:src="@drawable/logo2"
         />
 
     <ImageView
         android:id="@+id/infoConsImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="left|top"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/constructionmageobra"
+        android:src="@drawable/logo3"
         />
 
     <ImageView
         android:id="@+id/listplanoImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="left|top"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/listobra"
+        android:src="@drawable/logo4"
         />
 
     <ImageView
         android:id="@+id/listsstImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="left|top"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/listsst"
+        android:src="@drawable/logo5"
         />
 
     <ImageView
         android:layout_margin="2dip"
         android:id="@+id/listobraImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="left|top"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/listobra"
+        android:src="@drawable/logo6"
         />
 
 

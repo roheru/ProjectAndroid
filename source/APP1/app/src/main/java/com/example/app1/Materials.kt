@@ -1,12 +1,15 @@
 package com.example.app1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import com.example.app1.entities.Material
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_materials.*
@@ -26,13 +29,15 @@ class Materials : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var saveMaterial: Button?=null
-    private var vizMaterial: Button?=null
+    private var saveMateriales: Button?=null
+    private var vizMateriales: Button?=null
     private var nameMaterial:EditText?=null
     private var refMaterial:EditText?=null
     private var descMaterial:EditText?=null
     private var qMaterial:EditText?=null
     private var stateMaterial:EditText?=null
+    private var messageMater:TextView?=null
+    private var fm: FragmentManager?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,29 +53,34 @@ class Materials : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        this.view?.let { inicializar(it) }
-        return inflater.inflate(R.layout.fragment_materials, container, false)
+        val viewv=inflater.inflate(R.layout.fragment_materials, container, false)
+        inicializar(viewv)
+        accionar(viewv)
+
+        return viewv
     }
     fun inicializar(view:View){
-        this.saveMaterial=view.saveMaterial
-        this.vizMaterial=view.vizMaterial
+        this.saveMateriales=view.saveMaterial
+        this.vizMateriales=view.vizMaterial
         this.nameMaterial=view.nameMaterial
         this.refMaterial=view.reference
         this.descMaterial=view.descriptionm
         this.qMaterial=view.quantity
         this.stateMaterial=view.stateSol
-        accionar(view)
+        this.messageMater=view.message
+        this.fm=getFragmentManager()
+        
 
     }
     fun accionar(view:View){
 
-        this.saveMaterial?.setOnClickListener { view ->
+        this.saveMateriales?.setOnClickListener { view ->
             saveMaterialAction()
         }
 
 
 
-        this.vizMaterial?.setOnClickListener { view ->
+        this.vizMateriales?.setOnClickListener { view ->
             listMaterials()
         }
 
@@ -89,7 +99,11 @@ class Materials : Fragment() {
                 flag=false
             }
             if(flag){
-                this.message.text="El material ha sido guardado con éxito."
+                this.messageMater?.text="El material ha sido guardado con éxito."
+                Log.i("InsertMat","Ok")
+            }else{
+                this.messageMater?.text="Error guardando la información"
+                Log.i("InsertMat","Error")
             }
         }catch(e:Exception){
             e.printStackTrace()
@@ -97,7 +111,13 @@ class Materials : Fragment() {
 
     }
     fun listMaterials(){
+        val dialogFrag = ListMaterials()
+        if(this.fm!=null){
+            dialogFrag.setTargetFragment(this,1)
+            fragmentManager?.let { dialogFrag.show(it,"Hola") }
 
+            Log.i("Fragment Manager Open","CLick upload pdf")
+        }
 
     }
     companion object {
